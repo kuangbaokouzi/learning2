@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.entor.po">
+    <class name="Notice" table="notice">
+        <id name="id" column="id">
+            <!-- 采用foreign生成策略，forgeign会取得另外一个关联对象的标识 -->
+            <generator class="foreign">
+                <!-- user是Notice类中关联的对象 -->
+                <param name="property">user</param>
+            </generator>
+        </id>
+        <property name="title" column="username"/>
+        <property name="content" column="password"/>
+
+        <one-to-one name="user" class="com.entor.po.User" constrained="true"/>
+    </class>
+</hibernate-mapping>

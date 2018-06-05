@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<hibernate-mapping package="com.entor.po">
+    <class name="Product" table="product">
+        <id name="id">
+            <generator class="native"/>
+        </id>
+        <property name="name"/>
+        <property name="category"/>
+    </class>
+</hibernate-mapping>
