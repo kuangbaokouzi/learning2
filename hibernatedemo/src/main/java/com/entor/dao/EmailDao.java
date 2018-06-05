@@ -1,6 +1,6 @@
 package com.entor.dao;
 
-import com.entor.po.Email;
+import com.entor.po2.Email;
 
 import java.util.List;
 
@@ -12,4 +12,6 @@ public interface EmailDao {
     void update(Email email);
 
     void delete(Integer id);
+
+    void save(Email email);
 }

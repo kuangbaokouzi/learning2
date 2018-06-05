@@ -1,12 +1,12 @@
 package com.entor.dao.impl;
 
 import com.entor.dao.EmailDao;
-import com.entor.po.Email;
+import com.entor.po2.Email;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
@@ -21,6 +21,9 @@ public class EmailDaoImpl implements EmailDao {
     @Resource
     private SessionFactory sessionFactory;
 
+    @Resource
+    private HibernateTemplate hibernateTemplate;
+
     @Transactional(readOnly = true)
     @Override
     public Email get(Integer id) {
@@ -30,7 +33,7 @@ public class EmailDaoImpl implements EmailDao {
 
     @Override
     public List<Email> getAll() {
-        return null;
+        return hibernateTemplate.findByExample(new Email());
     }
 
     @Override
@@ -41,5 +44,10 @@ public class EmailDaoImpl implements EmailDao {
     @Override
     public void delete(Integer id) {
 
+    }
+
+    @Override
+    public void save(Email email) {
+        sessionFactory.getCurrentSession().save(email);
     }
 }
