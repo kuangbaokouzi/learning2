@@ -10,6 +10,9 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 import static org.springframework.transaction.annotation.Propagation.REQUIRED;
@@ -27,8 +30,27 @@ public class EmailDaoImpl implements EmailDao {
     @Transactional(readOnly = true)
     @Override
     public Email get(Integer id) {
-        Session session = sessionFactory.getCurrentSession();
-        return session.get(Email.class, 1);
+        // 1.JPA Query
+//        return getSession().createQuery(
+//                "from Email e " +
+//                        "where e.id = :id", Email.class
+//        ).setParameter("id", id).uniqueResult();
+
+        // 2.HQL Query
+//        org.hibernate.query.Query<Email> query = getSession().createQuery(
+//                        "from Email e " +
+//                        "where e.id = :id"
+//        );
+//        query.setParameter("id", id);
+//        return query.uniqueResult();
+
+        // 3.Criteria
+        CriteriaBuilder builder = getSession().getCriteriaBuilder();
+        CriteriaQuery<Email> criteria = builder.createQuery(Email.class);
+        Root<Email> root = criteria.from(Email.class);
+        criteria.select(root);
+        criteria.where(builder.equal(root.get("id"), id));
+        return getSession().createQuery(criteria).uniqueResult();
     }
 
     @Override
@@ -48,6 +70,10 @@ public class EmailDaoImpl implements EmailDao {
 
     @Override
     public void save(Email email) {
-        sessionFactory.getCurrentSession().save(email);
+        getSession().save(email);
+    }
+
+    private Session getSession() {
+        return sessionFactory.getCurrentSession();
     }
 }

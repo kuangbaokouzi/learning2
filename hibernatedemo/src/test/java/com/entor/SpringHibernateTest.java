@@ -9,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+import javax.persistence.EntityManager;
 
 @ContextConfiguration({"classpath:applicationContext.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -18,7 +19,7 @@ public class SpringHibernateTest {
 
     @Test
     public void testGet(){
-        System.out.println(emailDao.get(1));
+        System.out.println(emailDao.get(7));
     }
 
     @Test
