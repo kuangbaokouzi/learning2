@@ -1,9 +1,12 @@
 package com.entor.po2;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
+import static org.hibernate.annotations.CascadeType.SAVE_UPDATE;
 
 @Entity
 @Table(name = "email")
@@ -14,7 +17,8 @@ public class Email implements Serializable {
     private Integer id;
     private String address;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @Cascade(SAVE_UPDATE)
     @JoinColumn(name = "user_id")
     private User user;
 
