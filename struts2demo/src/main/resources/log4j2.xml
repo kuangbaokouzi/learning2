@@ -6,7 +6,7 @@
         </Console>
     </Appenders>
     <Loggers>
-        <Logger name="com.entor.action" level="debug"/>
+        <Logger name="com.entor" level="debug"/>
         <Logger name="com.opensymphony.xwork2" level="debug"/>
         <Logger name="org.apache.struts2" level="debug"/>
         <Root level="warn">

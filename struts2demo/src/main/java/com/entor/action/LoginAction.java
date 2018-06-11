@@ -1,12 +1,15 @@
 package com.entor.action;
 
-import com.entor.to.MessageStore;
 import com.opensymphony.xwork2.ActionSupport;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class LoginAction extends ActionSupport {
+
+    private static final Logger LOGGER = LogManager.getLogger(LoginAction.class);
+
     private String loginName;
     private String password;
-    private MessageStore messageStore;
 
     public String getLoginName() {
         return loginName;
@@ -24,23 +27,11 @@ public class LoginAction extends ActionSupport {
         this.password = password;
     }
 
-
-    public MessageStore getMessageStore() {
-        return messageStore;
-    }
-
-    public void setMessageStore(MessageStore messageStore) {
-        this.messageStore = messageStore;
-    }
-
     public String login() {
-        if ("admin".equals(loginName) && "admin".equals(password)) {
-            messageStore = new MessageStore();
-            messageStore.setMessage("验证通过！");
-        } else {
-            messageStore = new MessageStore();
-            messageStore.setMessage("用户名或密码错误！");
-        }
-        return SUCCESS;
+
+        LOGGER.info("loginName:{}", loginName);
+        LOGGER.info("password:{}", password);
+
+        return "logon";
     }
 }

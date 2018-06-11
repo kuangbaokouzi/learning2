@@ -4,15 +4,16 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Entor图书管理系统-Loign</title>
+    <title>Basic Struts 2 Application - Welcome</title>
 </head>
 <body>
-<h1>Welcome To Entor图书管理系统!</h1>
-<p><s:property value="messageStore.message"/></p>
-<form action="login" method="post">
-    用户名：<input type="text" name="loginName">
-    密码：<input type="password" name="password">
-    <input type="submit" value="登录">
-</form>
+<h1>Welcome To Struts 2!</h1>
+<p>Get your own personal hello by filling out and submitting this form.</p>
+<s:property value="loginName"/>&emsp;${password}
+<s:form action="login.action" method="POST">
+    <s:textfield name="loginName" label="用户名"/>
+    <s:password name="password" label="密码"/>
+    <s:submit value="登录"/>
+</s:form>
 </body>
 </html>
