@@ -53,4 +53,21 @@ public class EmailServiceImpl implements EmailService {
 
         return pageModel;
     }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Email> findByIds(Integer[] ids) {
+        return emailDao.batchSelectById(ids);
+    }
+
+    @Override
+    public void modifyEmail(Email email) {
+        Email persistEmail = emailDao.getById(email.getId());
+        if(email.getAddress() != null)
+            persistEmail.setAddress(email.getAddress());
+
+        if(email.getUser() != null)
+            persistEmail.setUser(email.getUser());
+        emailDao.update(persistEmail);
+    }
 }

@@ -68,6 +68,11 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     }
 
     @Override
+    public void update(T t) {
+        getSession().update(t);
+    }
+
+    @Override
     public void update(List<T> list) {
         for (T o : list) {
             getSession().update(o);

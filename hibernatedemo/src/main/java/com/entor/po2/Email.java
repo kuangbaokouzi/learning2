@@ -1,7 +1,9 @@
 package com.entor.po2;
 
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.SelectBeforeUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,6 +12,7 @@ import static org.hibernate.annotations.CascadeType.SAVE_UPDATE;
 
 @Entity
 @Table(name = "email")
+@DynamicUpdate(false)
 public class Email implements Serializable {
 
     @Id

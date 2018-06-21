@@ -12,4 +12,8 @@ public interface EmailService {
     List<Email> findByProperty(String name, Object value);
 
     PageModel<Email> findByPage(Email email, Integer pageIndex, Integer pageSize);
+
+    List<Email> findByIds(Integer[] ids);
+
+    void modifyEmail(Email email);
 }

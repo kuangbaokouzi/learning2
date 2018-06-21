@@ -15,6 +15,8 @@ public interface BaseDao<T> {
 
     void delete(List<T> list);
 
+    void update(T t);
+
     void update(List<T> list);
 
     List<T> findByProperty(String name, Object value);

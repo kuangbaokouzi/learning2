@@ -36,6 +36,20 @@ public class SpringHibernateTest {
                 .forEach(e -> System.out.println(e.getAddress()));
     }
 
+
+    @Test
+    public void testBatchSelectById() {
+        Integer[] ids = {6, 8, 10};
+        emailService.findByIds(ids).forEach(email -> System.out.println(email.getAddress()));
+    }
+
+    @Test
+    public void testUpdate(){
+        Email email = new Email();
+        email.setId(9);
+        email.setAddress("shanghai");
+        emailService.modifyEmail(email);
+    }
 //    @Test
 //    public void testSave() {
 //        Email email = new Email();
