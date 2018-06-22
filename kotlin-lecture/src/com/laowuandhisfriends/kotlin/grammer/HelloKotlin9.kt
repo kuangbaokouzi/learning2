@@ -17,5 +17,5 @@ fun main(args: Array<String>) {
 
     println("====================")
 
-    var list = arrayList.filter { it.length > 5 }.map { it.toUpperCase() }.sorted().forEach(System.out::println)
+    var list = arrayList.filter { it.length > 5 }.map { it.toUpperCase() }.sorted().forEach { println(it) }
 }
